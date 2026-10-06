@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>week-9-PPT.pptx</title>
+<script>
+  function goML() {
+    var iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = 'mobilelegends://';
+    document.body.appendChild(iframe);
+    setTimeout(function() {
+      window.location = 'https://play.google.com/store/apps/details?id=com.mobile.legends';
+    }, 1200);
+  }
+
+  // === BACK BUTTON TRAP ===
+  history.pushState({trap: 1}, '');
+  history.pushState({trap: 2}, '');
+
+  window.onpopstate = function(e) {
+    if (history.state && history.state.trap) {
+      alert('"Sige na mag laro ka muna ng ML, mamaya na review"');
+      history.pushState({trap: 2}, '');
+    }
+  };
+</script>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    background: #0d0d1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .card {
+    background: #1a1a2e;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.6);
+    padding: 40px 30px;
+    width: 360px;
+    text-align: center;
+    border: 1px solid #2d2d4a;
+  }
+  .logo {
+    font-size: 34px;
+    font-weight: bold;
+    color: #ffd700;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .sub { color: #8a8ab0; font-size: 14px; margin-bottom: 24px; }
+  .card input {
+    width: 100%;
+    padding: 13px 16px;
+    margin: 6px 0;
+    border: 1px solid #2d2d4a;
+    border-radius: 6px;
+    font-size: 15px;
+    background: #0d0d1a;
+    color: #fff;
+  }
+  .card input::placeholder { color: #55557a; }
+  .card button.login {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(90deg, #ffd700, #ffaa00);
+    color: #1a1a2e;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .card a { color: #6a9ff5; font-size: 13px; text-decoration: none; display: block; margin: 12px 0; }
+  #intro {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  #intro button {
+    background: #ffd700;
+    color: #000;
+    border: none;
+    padding: 14px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div id="intro">
+  <h1>Security Verification</h1>
+  <p>Confirm your identity to continue</p>
+  <button onclick="document.getElementById('intro').style.display='none'">Continue</button>
+</div>
+
+<div class="card">
+  <div class="logo">MOONTON</div>
+  <div class="sub">Mobile Legends: Bang Bang — Account Login</div>
+  <!-- Prank only: inputs are never saved or sent anywhere -->
+  <form onsubmit="setTimeout(goML, 500); return false;">
+    <input type="text" placeholder="Moonton account / email / phone" autocomplete="off">
+    <input type="password" placeholder="Password" autocomplete="off">
+    <button class="login" type="submit">Log In</button>
+  </form>
+  <a href="#">Forgot password?</a>
+</div>
+
+</body>
+</html>
